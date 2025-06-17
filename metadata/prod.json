@@ -1,0 +1,14 @@
+{
+  "tables": [
+    {
+      "table_name": "users",
+      "last_accessed": "2024-12-01",
+      "up_for_delete": false
+    },
+    {
+      "table_name": "orders",
+      "last_accessed": "2024-11-10",
+      "up_for_downgrade": true
+    }
+  ]
+}
