@@ -22,13 +22,14 @@ jobs:
         python-version: 3.11
 
     - name: Run Metadata Script
-      run: |
-        python scripts/fetch_metadata.py
+      run: python scripts/fetch_metadata.py
 
     - name: Move output files into repo folder
       run: |
-        if not exist metadata mkdir metadata
-        copy output\*.json metadata\
+        if (-Not (Test-Path "metadata")) {
+          New-Item -ItemType Directory -Path "metadata"
+        }
+        Copy-Item -Path "output\*.json" -Destination "metadata" -Force
 
     - name: Commit and Push Changes
       run: |
