@@ -1,0 +1,27 @@
+name: Generate Metadata Files on Windows
+
+on:
+  push:  
+    branches:
+      - main  
+jobs:
+  build-metadata:
+    runs-on: windows-latest  # 🪟 Run on Windows
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Run Metadata Script
+      run: python scripts/fetch_metadata.py
+
+    - name: Upload JSON Outputs
+      uses: actions/upload-artifact@v3
+      with:
+        name: metadata-jsons
+        path: output/
