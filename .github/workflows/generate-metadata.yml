@@ -25,11 +25,7 @@ jobs:
       run: python scripts/fetch_metadata.py
 
     - name: Move output files into repo folder
-      run: |
-        if (-Not (Test-Path "metadata")) {
-          New-Item -ItemType Directory -Path "metadata"
-        }
-        Copy-Item -Path "output\*.json" -Destination "metadata" -Force
+      run: python scripts/move_files.py
 
     - name: Commit and Push Changes
       run: |
